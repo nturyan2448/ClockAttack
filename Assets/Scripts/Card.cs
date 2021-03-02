@@ -63,7 +63,44 @@ public class Card : MonoBehaviour
         }
     }
 
-    
+    public string CardName() {
+        switch (type) {
+        case CardEffect.Add:
+            return "Add";
+        case CardEffect.Subtract:
+            return "Subtract";
+        case CardEffect.Attack:
+            return "Attack";
+        case CardEffect.Stop:
+            return "Stop";
+        case CardEffect.Skip:
+            return "Skip";
+        case CardEffect.Approach:
+            return "Approach";
+        default:
+            return "";
+        }
+    }
+
+    public string CardExplanation () {
+        switch (type) {
+        case CardEffect.Add:
+            return string.Format("Add {0} {1} to the clock", num.ToString(), scale);
+        case CardEffect.Subtract:
+            return string.Format("Minus {0} {1} from the clock", num.ToString(), scale);
+        case CardEffect.Attack:
+            return "Speed up the clock and +5 to your countdown";
+        case CardEffect.Stop:
+            return "Stop the clock until your next turn";
+        case CardEffect.Skip:
+            return "Skip the next player";
+        case CardEffect.Approach:
+            return "Set the clock to 10 minutes before your goal time";
+        default:
+            return "";
+        }
+    }
+
 
     //private void OnMouseDown () {
     //    Player p = transform.parent.GetComponent<Player>();

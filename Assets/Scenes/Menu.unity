@@ -498,10 +498,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3638552555075279534, guid: 1a3dc152d1a6144ab81c686741c4b483, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 3638552555075279534, guid: 1a3dc152d1a6144ab81c686741c4b483, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 3638552555075279536, guid: 1a3dc152d1a6144ab81c686741c4b483, type: 3}
       propertyPath: realWorldTime
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3638552555075279537, guid: 1a3dc152d1a6144ab81c686741c4b483, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     m_RemovedComponents:
     - {fileID: 3638552555327290701, guid: 1a3dc152d1a6144ab81c686741c4b483, type: 3}
     - {fileID: 3638552554728956005, guid: 1a3dc152d1a6144ab81c686741c4b483, type: 3}
@@ -683,8 +695,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Clock Attack
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b6e7a46f42639406eb1750b4fba15bb7, type: 2}
-  m_sharedMaterial: {fileID: -597744865008012004, guid: b6e7a46f42639406eb1750b4fba15bb7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f67ebeb96e8f84af3993648c3f6b047c, type: 2}
+  m_sharedMaterial: {fileID: -6559033183147188280, guid: f67ebeb96e8f84af3993648c3f6b047c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

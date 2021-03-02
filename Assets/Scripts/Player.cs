@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public Countdown countdown;
     public AudioClip playCardAudio;
     public Transform clockPosition;
+    public TextMeshPro cardName;
+    public TextMeshPro cardExplanation;
 
     Deck deck;
 
@@ -47,6 +49,19 @@ public class Player : MonoBehaviour
         if (GameController.instance.state == "playing")
             CheckWin();
 
+        GameObject target = GetHoverCard();
+
+        // Show explanation of the card;
+        if (playerID == 0) {
+            if (target != null) {
+                cardName.text = target.GetComponent<Card>().CardName();
+                cardExplanation.text = target.GetComponent<Card>().CardExplanation();
+            } else {
+                cardName.text = "";
+                cardExplanation.text = "";
+            }
+        }
+
         if (GameController.instance.round == playerID && GameController.instance.state == "playing") {
             // Is your turn!
 
@@ -77,18 +92,18 @@ public class Player : MonoBehaviour
             }
             // Actions for Human Players
             else if (Input.GetMouseButtonDown(0) && GameController.instance.round == 0) {
-                List<RaycastHit2D> hits = new List<RaycastHit2D>(Physics2D.GetRayIntersectionAll(Camera.main.ScreenPointToRay(Input.mousePosition)));
-                //RaycastHit2D[] hits = Physics2D.GetRayIntersectionAll(Camera.main.ScreenPointToRay(Input.mousePosition));
-                //hits = hits.OrderBy(hit => hit.collider.gameObject.GetComponent<SortingGroup>().sortingOrder)
-                if (hits.Count > 0) {
-                    hits.Sort(delegate (RaycastHit2D x, RaycastHit2D y) {
-                        return x.collider.GetComponent<SortingGroup>().sortingOrder.CompareTo(y.collider.GetComponent<SortingGroup>().sortingOrder);
-                    });
-                    GameObject target = hits[hits.Count - 1].collider.gameObject;
-                    Player owner = target.transform.parent.GetComponent<Player>();
-                    if (owner != null && owner.playerID == 0)
-                        PlayCard(target);
-                }
+                //List<RaycastHit2D> hits = new List<RaycastHit2D>(Physics2D.GetRayIntersectionAll(Camera.main.ScreenPointToRay(Input.mousePosition)));
+                //if (hits.Count > 0) {
+                //    hits.Sort(delegate (RaycastHit2D x, RaycastHit2D y) {
+                //        return x.collider.GetComponent<SortingGroup>().sortingOrder.CompareTo(y.collider.GetComponent<SortingGroup>().sortingOrder);
+                //    });
+                //    GameObject target = hits[hits.Count - 1].collider.gameObject;
+                //    Player owner = target.transform.parent.GetComponent<Player>();
+                //    if (owner != null && owner.playerID == 0)
+                //        PlayCard(target);
+                //}
+                if (target != null)
+                    PlayCard(target);
             }
         }
         prevRound = GameController.instance.round;
@@ -162,5 +177,19 @@ public class Player : MonoBehaviour
 
     bool IsStartingRound() {
         return GameController.instance.round != prevRound;
+    }
+
+    GameObject GetHoverCard() {
+        List<RaycastHit2D> hits = new List<RaycastHit2D>(Physics2D.GetRayIntersectionAll(Camera.main.ScreenPointToRay(Input.mousePosition)));
+        if (hits.Count > 0) {
+            hits.Sort(delegate (RaycastHit2D x, RaycastHit2D y) {
+                return x.collider.GetComponent<SortingGroup>().sortingOrder.CompareTo(y.collider.GetComponent<SortingGroup>().sortingOrder);
+            });
+            GameObject target = hits[hits.Count - 1].collider.gameObject;
+            Player owner = target.transform.parent.GetComponent<Player>();
+            if (owner != null && owner.playerID == 0)
+                return target;
+        }
+        return null;
     }
 }

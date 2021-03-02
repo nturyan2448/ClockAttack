@@ -137,13 +137,23 @@ public class GameController : MonoBehaviour
     }
 
     public void EndGame(int winnerID) {
+        Debug.Log("WinnerID: " + winnerID.ToString());
         winText.SetActive(true);
-        Text text = winText.transform.GetChild(0).GetComponent<Text>();
+        Image image = winText.GetComponent<Image>();
+        TextMeshProUGUI text = winText.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        if (text == null) {
+            Debug.Log("Didn't find the text");
+            Debug.Log(winText.ToString());
+            Debug.Log(winText.transform.GetChild(0).ToString());
+            Debug.Log(winText.transform.GetChild(0).GetComponent<TextMeshPro>());
+        }
         if (winnerID == 0) {
+            image.color = new Color32(0xDB, 0x4F, 0x5F, 0xFF);
             text.text = "You Win!";
             AudioSource.PlayClipAtPoint(winAudio, Vector3.zero);
         }
         else {
+            image.color = new Color32(0x61, 0x86, 0xA9, 0xFF);
             text.text = string.Format("AI {0} Win!", winnerID);
             AudioSource.PlayClipAtPoint(loseAudio, Vector3.zero);
         }
