@@ -1,0 +1,26 @@
+﻿<Properties StartupConfiguration="{AFD9746A-293F-4BBE-98D0-7A15963AF605}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/IsBouncing.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Deck.cs" Line="28" Column="1" />
+      <File FileName="Assets/Scripts/Card.cs" Line="46" Column="33" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="150" Column="28" />
+      <File FileName="Assets/Scripts/Player.cs" Line="25" Column="41" />
+      <File FileName="Assets/Scripts/Countdown.cs" Line="25" Column="68" />
+      <File FileName="Assets/Scripts/DigitalClock.cs" Line="20" Column="84" />
+      <File FileName="Assets/Scripts/CoroutineUtilities.cs" Line="41" Column="14" />
+      <File FileName="Assets/Scripts/HourArm.cs" Line="18" Column="126" />
+      <File FileName="Assets/MenuHourArm.cs" Line="15" Column="1" />
+      <File FileName="Assets/MenuMinuteArm.cs" Line="16" Column="84" />
+      <File FileName="Assets/MenuStartButton.cs" Line="9" Column="45" />
+      <File FileName="Assets/Prestart.cs" Line="38" Column="6" />
+      <File FileName="Assets/IsBouncing.cs" Line="6" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="dab289cf-d7f5-4235-81e0-8210be674e4c" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
