@@ -14,9 +14,14 @@ public class MinuteArm : MonoBehaviour
     void Update()
     {
         if (GameController.instance.state == "playing") {
-            float currentTime = Time.time;
-            transform.localRotation = Quaternion.Euler(0, 0, -((currentTime - GameController.instance.startTime) % 60) * 6);
-        } else {
+            float currentTime;
+            if (GameController.instance.clockStopped) {
+                currentTime = GameController.instance.tempCurrentTime;
+            }
+            else currentTime = Time.time - GameController.instance.startTime;
+            transform.localRotation = Quaternion.Euler(0, 0, -((currentTime) % 60) * 6);
+        }
+        else {
             transform.localRotation = Quaternion.identity;
         }
     }

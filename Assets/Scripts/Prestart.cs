@@ -9,6 +9,7 @@ public class Prestart : MonoBehaviour
     public float maxFontSize = 100f;
     public float minFontSize = 40f;
     public TextMeshPro countdownText;
+    public AudioClip countdownAudio;
 
     float timer;
 
@@ -39,6 +40,7 @@ public class Prestart : MonoBehaviour
 
     public void PreStart() {
         timer = timerStart;
+        AudioSource.PlayClipAtPoint(countdownAudio, Vector3.zero, 0.6f);
     }
 
     public float GetFontSize(float f) {

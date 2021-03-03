@@ -156,7 +156,7 @@ public class Player : MonoBehaviour
     }
 
     IEnumerator PlayCardAnimation(Transform t) {
-        AudioSource.PlayClipAtPoint(playCardAudio, Vector3.zero);
+        AudioSource.PlayClipAtPoint(playCardAudio, Vector3.zero, 8.0f);
         t.GetChild(4).gameObject.SetActive(false);
         yield return CoroutineUtilities.MoveObjectOverTime(t, t.position, clockPosition.position, 0.2f);
         GameObject newCard = deck.Draw();

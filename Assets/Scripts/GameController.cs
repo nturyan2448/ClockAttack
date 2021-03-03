@@ -21,8 +21,10 @@ public class GameController : MonoBehaviour
     public float maxSpeedScale = 3f;
     public AudioClip winAudio;
     public AudioClip loseAudio;
+    public bool clockStopped = false;
 
     float tempTimeScale;
+    public float tempCurrentTime;
     int callStopID;
 
     private void Awake () {
@@ -47,14 +49,23 @@ public class GameController : MonoBehaviour
     void Update()
     {
         if (state == "playing") {
-            float currentTime = Time.time - startTime;
+            float currentTime;
+
+            if (clockStopped)
+                currentTime = tempCurrentTime;
+            else currentTime = Time.time - startTime;
+
+            if (currentTime < 0) Debug.LogWarning("currentTime < 0: current time = " + currentTime);
+
             currentHour = Mathf.FloorToInt(currentTime / 60);
             if (currentHour >= 12) {
                 startTime += 12 * 60;
+                tempCurrentTime -= 12 * 60;
                 currentHour -= 12;
             }
             else if (currentHour < 0) {
                 startTime -= 12 * 60;
+                tempCurrentTime += 12 * 60;
                 currentHour += 12;
             }
             currentMinute = Mathf.FloorToInt(currentTime % 60);
@@ -68,31 +79,36 @@ public class GameController : MonoBehaviour
     }
 
     public void AddTime(float t, string scale) {
-        if (scale == "minute")
+        if (scale == "minute") {
             startTime -= t;
-        else if (scale == "hour")
+            tempCurrentTime += t;
+        } else if (scale == "hour") {
             startTime -= t * 60;
-        else {
+            tempCurrentTime += t * 60;
+        } else {
             Debug.LogWarning("Add time got a wrong scale");
         }
     }
 
     public void SubtractTime(float t, string scale) {
-        if (scale == "minute")
+        if (scale == "minute") {
             startTime += t;
-        else if (scale == "hour")
+            tempCurrentTime -= t;
+        } else if (scale == "hour") {
             startTime += t * 60;
-        else {
+            tempCurrentTime -= t * 60;
+        } else {
             Debug.LogWarning("Subtract time got a wrong scale");
         }
     }
 
     public void SetTime(int hour, int minute) {
         startTime = Time.time - hour * 60 - minute;
+        tempCurrentTime = hour * 60 + minute;
     }
 
     public void SpeedUp() {
-        if (Time.timeScale == 0) {
+        if (clockStopped) {
             if (tempTimeScale < maxSpeedScale)
                 tempTimeScale += speedUpScale;
         }
@@ -102,15 +118,25 @@ public class GameController : MonoBehaviour
     }
 
     public void StopClock(int callerID) {
-        if (Time.timeScale != 0)
+        //if (Time.timeScale != 0)
+        //    tempTimeScale = Time.timeScale;
+        //Time.timeScale = 0;
+        if (!clockStopped) {
             tempTimeScale = Time.timeScale;
-        Time.timeScale = 0;
+            tempCurrentTime = Time.time - startTime;
+        }
+        Time.timeScale = 1;
         callStopID = callerID;
+        clockStopped = true;
     }
 
     public void RestartClock() {
-        if (round == callStopID)
+        if (round == callStopID) {
             Time.timeScale = tempTimeScale;
+            startTime = Time.time - tempCurrentTime;
+            clockStopped = false;
+        }
+
     }
 
 
@@ -150,12 +176,12 @@ public class GameController : MonoBehaviour
         if (winnerID == 0) {
             image.color = new Color32(0xDB, 0x4F, 0x5F, 0xFF);
             text.text = "You Win!";
-            AudioSource.PlayClipAtPoint(winAudio, Vector3.zero);
+            AudioSource.PlayClipAtPoint(winAudio, Vector3.zero, 2f);
         }
         else {
             image.color = new Color32(0x61, 0x86, 0xA9, 0xFF);
             text.text = string.Format("AI {0} Win!", winnerID);
-            AudioSource.PlayClipAtPoint(loseAudio, Vector3.zero);
+            AudioSource.PlayClipAtPoint(loseAudio, Vector3.zero, 2f);
         }
         state = "end";
     }
@@ -166,6 +192,7 @@ public class GameController : MonoBehaviour
     }
 
     public void MainMenu() {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Menu");
     }
 }

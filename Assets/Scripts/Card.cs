@@ -89,7 +89,7 @@ public class Card : MonoBehaviour
         case CardEffect.Subtract:
             return string.Format("Minus {0} {1} from the clock", num.ToString(), scale);
         case CardEffect.Attack:
-            return "Speed up the clock and +5 to your countdown";
+            return "Speed up the clock and +5 to your countdown timer";
         case CardEffect.Stop:
             return "Stop the clock until your next turn";
         case CardEffect.Skip:

@@ -1,1 +1,12 @@
-Poker sprites credits to Screaming Brain Studios (https://opengameart.org/content/2d-poker-pack)
+Fonts credit to Google Fonts:
+https://fonts.google.com/specimen/Luckiest+Guy?preview.text_type=custom
+https://fonts.google.com/specimen/Nanum+Pen+Script?preview.text_type=custom
+
+Audio credits:
+Background Music: The Last Encounter (Music Composed/Authored by Matthew Pablo http://www.matthewpablo.com)
+Start game count down sound effect: Unnecro (https://freesound.org/people/Unnecro/sounds/165991/)
+Play card sound effect: f4ngy (https://freesound.org/people/f4ngy/sounds/240777/)
+Win game sound effect: Johanneskristjansson (https://freesound.org/people/Johanneskristjansson/sounds/371339/)
+Lose game sound effect: unchaz (https://freesound.org/people/unchaz/sounds/150956/)
+
+All UI design, color palettes, clock design and card back design are credit to Risa Hung.
